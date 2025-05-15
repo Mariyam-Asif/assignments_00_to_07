@@ -1,37 +1,23 @@
-# Project 2: Phonebook 
-
-def read_phone_numbers():
-    phonebook = {}
-
-    while True: 
-        name = input("Name: ")
-        if name == "":
-            break
-        number = input("Number: ")
-        phonebook[name.lower()] = number
-    return phonebook
-
-def print_phonebook(phonebook):
-    print("\nPhonebook entries:")
-    for name in phonebook:
-        print(str(name) + "->" + str(phonebook[name]))
-
-def lookup_numbers(phonebook):
-    print("\nLookup Numbers:")
-    while True:
-        name = input("Enter name to lookup: ")
-        if name == "":
-            break
-        key = name.lower()
-        if key not in phonebook:
-            print(name + "is not in the phonebook.")
-        else:
-            print(name + "'s number is: " + phonebook[key])
+# Project 2: Pop Up Shop
 
 def main():
-    phonebook = read_phone_numbers()
-    print_phonebook(phonebook)
-    lookup_numbers(phonebook)
+    fruits = {
+        "apple": 1.5,
+        "durian": 50,
+        "jackfruit": 80,
+        "kiwi": 1,
+        "rambutan": 1.5,
+        "mango": 5
+    }
+
+    total_cost = 0 
+
+    for fruit_name in fruits:
+        price = fruits[fruit_name]
+        amount_bought = int(input(f"How many ({fruit_name}) do you want to buy?: "))
+        total_cost += price * amount_bought
+    
+    print("Your total is $" + str(total_cost))
 
 if __name__ == "__main__":
     main()

@@ -1,36 +1,37 @@
-# Project 1: Count Numbers
+# Project 1: Phonebook 
 
-# Get Numbers from the User
-def get_user_numbers():
-    user_numbers = [] 
+def read_phone_numbers():
+    phonebook = {}
 
-    while True:
-        user_input = input("Enter a number: ")
-        if user_input == "":
+    while True: 
+        name = input("Name: ")
+        if name == "":
             break
-        num = int(user_input)
-        user_numbers.append(num)
-    return user_numbers
+        number = input("Number: ")
+        phonebook[name.lower()] = number
+    return phonebook
 
-# Count how many times each number appears
-def count_nums(num_list):
-    num_dict = {}
-    for num in num_list:
-        if num not in num_dict:
-            num_dict[num] = 1 # If it's not in the dictionary, add it with count 1
+def print_phonebook(phonebook):
+    print("\nPhonebook entries:")
+    for name in phonebook:
+        print(str(name) + "->" + str(phonebook[name]))
+
+def lookup_numbers(phonebook):
+    print("\nLookup Numbers:")
+    while True:
+        name = input("Enter name to lookup: ")
+        if name == "":
+            break
+        key = name.lower()
+        if key not in phonebook:
+            print(name + "is not in the phonebook.")
         else:
-            num_dict[num] += 1 # If it's already there, increase the count by 1
-    return num_dict
-
-# Print the result
-def print_counts(num_dict):
-    for num in num_dict:
-        print(str(num) + " appears " + str(num_dict[num]) + " times.")
+            print(name + "'s number is: " + phonebook[key])
 
 def main():
-    user_numbers = get_user_numbers()
-    num_dict = count_nums(user_numbers)
-    print_counts(num_dict)
+    phonebook = read_phone_numbers()
+    print_phonebook(phonebook)
+    lookup_numbers(phonebook)
 
 if __name__ == "__main__":
     main()
